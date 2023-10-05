@@ -1,5 +1,3 @@
-// Function to authenticate and obtain an access token
-// Function to authenticate and obtain an access token
 async function authenticateAndGetAccessToken() {
     const email = 'swagger_patents@dev-morgancode.com';
     const password = 'QppuycgwcHa9pYmpoZZe';
@@ -30,7 +28,6 @@ async function authenticateAndGetAccessToken() {
 }
 
 
-// Function to download the abstract document using the access token
 async function downloadAbstractWithToken(accessToken, patentNumber) {
     const downloadUrl = 'https://patents.tvornica.net/api/download-available-documents';
     const requestData = {
@@ -42,7 +39,7 @@ async function downloadAbstractWithToken(accessToken, patentNumber) {
     };
 
     try {
-        // Make an authorized request using the access token
+
         const response = await fetch(downloadUrl, {
             method: 'POST',
             headers: {
@@ -60,7 +57,7 @@ async function downloadAbstractWithToken(accessToken, patentNumber) {
         if (data.download_url) {
             const abstractDownloadURL = data.download_url;
 
-            // Initiate the download of the abstract PDF
+         
             const link = document.createElement("a");
             link.href = abstractDownloadURL;
             link.style.display = "none";
@@ -76,22 +73,22 @@ async function downloadAbstractWithToken(accessToken, patentNumber) {
     }
 }
 
-// Event listener for the "Patent as Filed" checkbox
+
 filedCheckbox.addEventListener('change', async function () {
     subCheckboxes.style.display = filedCheckbox.checked ? 'block' : 'none';
 
-    // Clear the Abstract checkbox when hiding sub-checkboxes
+
     if (!filedCheckbox.checked) {
         abstractCheckbox.checked = false;
     }
 });
 
-// Event listener for the "Abstract" checkbox
+
 abstractCheckbox.addEventListener('change', async function () {
     if (abstractCheckbox.checked) {
         try {
             const accessToken = await authenticateAndGetAccessToken();
-            const patentNumber = urlParams.get('patent'); // Get the patent number
+            const patentNumber = urlParams.get('patent'); 
             await downloadAbstractWithToken(accessToken, patentNumber);
         } catch (error) {
             console.error(error);
@@ -100,13 +97,11 @@ abstractCheckbox.addEventListener('change', async function () {
     }
 });
 
-// Function to handle the downloadPDF logic
 function downloadPDF() {
-    // Get the patent number from the query parameter
+
     const urlParams = new URLSearchParams(window.location.search);
     const patentNumber = urlParams.get('patent');
 
-    // Checkboxes for sub-document types
     const filedCheckbox = document.getElementById('filedCheckbox');
     const abstractCheckbox = document.getElementById('abstractCheckbox');
     const claimsCheckbox = document.getElementById('claimsCheckbox');
@@ -130,6 +125,6 @@ function downloadPDF() {
     }
 }
 
-// Call the downloadPDF function when needed
-// For example, you can call it when a button is clicked, or as per your UI interaction.
+
+
 

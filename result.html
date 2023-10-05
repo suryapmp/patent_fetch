@@ -36,19 +36,19 @@
     </div>
 
     <script>
-        // Get the patent number from the query parameter
+  
         const urlParams = new URLSearchParams(window.location.search);
         const patentNumber = urlParams.get('patent');
 
         if (patentNumber) {
-            // Display the patent number on the result page
+          
             document.getElementById('patentNumber').textContent = patentNumber;
         } else {
-            // Handle the case where no patent number is provided
+           
             alert("No patent number found.");
         }
 
-        // Function to show/hide sub-checkboxes based on the "Patent as Filed" checkbox
+       
         const filedCheckbox = document.getElementById('filedCheckbox');
         const subCheckboxes = document.getElementById('subCheckboxes');
         const abstractCheckbox = document.getElementById('abstractCheckbox');

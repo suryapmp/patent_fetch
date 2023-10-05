@@ -1,4 +1,3 @@
-// Function to authenticate and obtain an access token
 function authenticateAndGetAccessToken() {
     const email = 'swagger_patents@dev-morgancode.com';
     const password = 'QppuycgwcHa9pYmpoZZe';
@@ -26,7 +25,6 @@ function authenticateAndGetAccessToken() {
         });
 }
 
-// Function to download the abstract document using the access token
 function downloadAbstractWithToken(accessToken, patentNumber) {
     const downloadUrl = 'https://patents.tvornica.net/api/download-available-documents';
     const requestData = {
@@ -55,7 +53,7 @@ function downloadAbstractWithToken(accessToken, patentNumber) {
             if (data.download_url) {
                 const abstractDownloadURL = data.download_url;
 
-                // Fetch the abstract document content
+     
                 return fetch(abstractDownloadURL);
             } else {
                 throw new Error("The abstract document is not available.");
@@ -71,10 +69,10 @@ function downloadAbstractWithToken(accessToken, patentNumber) {
         .then(abstractBlob => {
             const abstractFile = new Blob([abstractBlob], { type: 'application/pdf' });
 
-            // Create a URL for the abstract document
+       
             const abstractURL = URL.createObjectURL(abstractFile);
 
-            // You can now display or use the abstractURL as needed
+   
             console.log('Abstract Document URL:', abstractURL);
         })
         .catch(error => {

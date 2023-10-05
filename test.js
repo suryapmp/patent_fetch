@@ -8,7 +8,7 @@ const readline = require('readline').createInterface({
 const base_url = 'https://patents.tvornica.net/api';
 const endpoint = '/download-available-documents/';
 
-// Function to fetch and store access token
+
 async function fetchAccessToken() {
     const access_token_path = 'login/login_response.json'; // Update with the actual path
     let access_token;
@@ -22,7 +22,7 @@ async function fetchAccessToken() {
         if (!access_token) {
             console.log('Access token not found. Fetching it now...');
 
-            // Update with your email and password
+  
             const loginData = {
                 email: 'swagger_patents@dev-morgancode.com',
                 password: 'QppuycgwcHa9pYmpoZZe',
@@ -90,7 +90,7 @@ async function downloadDocuments(access_token, application_number, document_code
                 const filename = decodeURIComponent(parsed_url.pathname.split('/').pop());
                 const document_dir = `${application_number}/${document_code}`;
 
-                // Create the subdirectory for the application number if it doesn't exist
+               
                 fs.mkdirSync(document_dir, { recursive: true });
 
                 const download_path = `${document_dir}/${document_code}.pdf`;
@@ -116,7 +116,6 @@ async function downloadDocuments(access_token, application_number, document_code
     }
 }
 
-// Input application number and document code from the user
 readline.question('Enter the application number: ', (application_number) => {
     readline.question('Enter the document code: ', (document_code) => {
         readline.close();

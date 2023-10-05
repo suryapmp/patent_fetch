@@ -1,14 +1,14 @@
 const fs = require('fs');
 
-// JSON data containing the PDF information
+
 const pdfData = [
  
 ];
 
-// Directory where PDFs will be saved
+
 const pdfDirectory = './application';
 
-// Function to download and save PDFs
+
 function downloadAndSavePDFs(pdfData) {
     pdfData.forEach((pdf) => {
         // Check if the documentCode is "ABST"
@@ -16,10 +16,9 @@ function downloadAndSavePDFs(pdfData) {
             // Extract the pdfUrl from the JSON data
             const pdfUrl = pdf.pdfUrl;
 
-            // Construct the complete PDF URL
+
             const completePdfUrl = `https://ped.uspto.gov/api/queries/cms/${pdfUrl}`;
 
-            // Generate a filename for the PDF
             const filename = `${pdf.applicationNumberText}_${pdf.documentCode}.pdf`;
 
             // Download and save the PDF
@@ -36,5 +35,5 @@ function downloadAndSavePDFs(pdfData) {
     });
 }
 
-// Call the function to download and save PDFs
+
 downloadAndSavePDFs(pdfData);
