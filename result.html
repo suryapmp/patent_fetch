@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Patent Result</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div id="header">
+        <h1>USPTO Patent PDF Downloader</h1>
+    </div>
+    <div class="container" id="result">
+        <p>Patent Number: <strong id="patentNumber"></strong></p>
+        <p>Select patent type:</p>
+        <label>
+            <input type="checkbox" id="grantedCheckbox" checked> Granted Patents
+        </label>
+        <label>
+            <input type="checkbox" id="filedCheckbox"> Patent as Filed
+        </label>
+        <div id="subCheckboxes" style="display: none;">
+            <p>Select components:</p>
+            <label>
+                <input type="checkbox" id="abstractCheckbox"> Abstract
+            </label>
+            <label>
+                <input type="checkbox" id="claimsCheckbox"> Claims
+            </label>
+            <label>
+                <input type="checkbox" id="specificationCheckbox"> Specification
+            </label>
+        </div>
+        <button onclick="downloadPDF()">Download PDF</button>
+
+    </div>
+
+    <script>
+        // Get the patent number from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const patentNumber = urlParams.get('patent');
+
+        if (patentNumber) {
+            // Display the patent number on the result page
+            document.getElementById('patentNumber').textContent = patentNumber;
+        } else {
+            // Handle the case where no patent number is provided
+            alert("No patent number found.");
+        }
+
+        // Function to show/hide sub-checkboxes based on the "Patent as Filed" checkbox
+        const filedCheckbox = document.getElementById('filedCheckbox');
+        const subCheckboxes = document.getElementById('subCheckboxes');
+        const abstractCheckbox = document.getElementById('abstractCheckbox');
+        const claimsCheckbox = document.getElementById('claimsCheckbox');
+        const specificationCheckbox = document.getElementById('specificationCheckbox');
+        const grantedCheckbox = document.getElementById('grantedCheckbox');
+
+        filedCheckbox.addEventListener('change', function () {
+            subCheckboxes.style.display = filedCheckbox.checked ? 'block' : 'none';
+        });
+
+
+    </script>
+    <script type="text/javascript" src="downloade.js"></script>
+
+</body>
+
+</html>
